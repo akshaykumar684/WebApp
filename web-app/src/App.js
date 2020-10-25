@@ -1,5 +1,6 @@
 import './App.css';
-import Form from './Components/RegisterForm'
+import Form from './Components/FormComponent/RegisterForm'
+
 function App() {
   return (
    <Form/>
