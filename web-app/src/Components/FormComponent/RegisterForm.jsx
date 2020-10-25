@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-grid-system';
+import Google from '../GoogleLoginAuthComponent/GoogleLogin'
 class RegisterForm  extends Component {
 
   state = {
@@ -7,14 +8,22 @@ class RegisterForm  extends Component {
     email : '',
     phone : '',
     password : '',
-    gender : ''
+    gender : '',
+    gname : '',
+    imageUrl : ''
   }
     render() {
-      const {name,email,phone,password,gender} = this.state;
+      const {name,gname,email,phone,password,gender,imageUrl} = this.state;
         return (
           <Container>
             <Row>
-              <Col sm={4}>
+              {this.checkReponseFromGoogle() ? (
+                <div>
+                  <h5>Welcome {gname}</h5>
+                  <img src={imageUrl} alt={gname} />
+                </div>
+              ) : (
+                <Col sm={4}>
                 <form onSubmit={this.handleFormValue}>
                   <div className="form-group">
                     <input
@@ -94,12 +103,24 @@ class RegisterForm  extends Component {
                   <button type="submit" className="btn btn-primary">
                     Register
                   </button>
+                  <Google responseGoogle={this.responseGoogle} />
                 </form>
               </Col>
+              )} 
+              
             </Row>
           </Container>
         );
     }
+
+    responseGoogle = (response) => {
+
+      this.setState({
+          gname : response.profileObj.givenName,
+          imageUrl : response.profileObj.imageUrl
+      });
+      console.log(response);
+  }
 
     handleFormElementChange = (event) => {
       this.setState({
@@ -108,9 +129,21 @@ class RegisterForm  extends Component {
     };
 
     handleFormValue = event => {
-      console.log(this.state);
+      console.log(this.state.gname.length);
+      console.log(this.state.imageUrl.length);
       event.preventDefault();
     };
+
+    checkReponseFromGoogle = () => {
+      if (this.state.gname.length === 0)
+      {
+        return false;
+      }
+      else
+      {
+        return true;
+      }
+    }
 }
  
 export default RegisterForm;
