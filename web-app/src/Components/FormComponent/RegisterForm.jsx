@@ -45,7 +45,7 @@ class RegisterForm  extends Component {
           <div className="form-group input-group">
             <div className="input group prepend">
               <div className="input-group-text">
-                <i className="fas fa-user"></i>
+                <i className="fas fa-mobile-alt"></i>
               </div>
             </div>
             <input
@@ -83,7 +83,7 @@ class RegisterForm  extends Component {
           <div className="form-group input-group">
             <div className="input group prepend">
               <div className="input-group-text">
-                <i className="fas fa-user"></i>
+                <i className="fas fa-envelope"></i>
               </div>
             </div>
             <input
