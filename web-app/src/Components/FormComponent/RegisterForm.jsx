@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Google from '../GoogleLoginAuthComponent/GoogleLogin'
 class RegisterForm  extends Component {
 
   state = {
@@ -8,22 +7,11 @@ class RegisterForm  extends Component {
     phone : '',
     password : '',
     gender : '',
-    gname : '',
-    imageUrl : ''
   }
     render() {
-        return (
-              
-                this.checkReponseFromGoogle() ? 
-                this.renderGoogleInfo() :
-                this.renderForm()
-        );
-    }
-
-    renderForm = () => {
       const {name,email,phone,password,gender,} = this.state;
-      return (
-        <form onSubmit={this.handleFormValue}>
+        return (
+          <form onSubmit={this.handleFormValue} autoComplete="off">
           <div className="form-group input-group">
             <div className="input group prepend">
               <div className="input-group-text">
@@ -129,36 +117,10 @@ class RegisterForm  extends Component {
                 </button>
               </div>
             </div>
-            <div className="form-group input-group col md 6">
-              <div className="input group prepend">
-                <div className="input group prepend">
-                  <Google responseGoogle={this.responseGoogle} />
-                </div>
-              </div>
-            </div>
           </div>
         </form>
-      );
+        );
     }
-
-    renderGoogleInfo = () => {
-      const {gname,imageUrl} = this.state;
-      return(
-        <div>
-                  <h5>Welcome {gname}</h5>
-                  <img src={imageUrl} alt={gname} />
-                </div>
-      );
-    }
-
-    responseGoogle = (response) => {
-
-      this.setState({
-          gname : response.profileObj.givenName,
-          imageUrl : response.profileObj.imageUrl
-      });
-      console.log(response);
-  }
 
     handleFormElementChange = (event) => {
       this.setState({
@@ -167,21 +129,10 @@ class RegisterForm  extends Component {
     };
 
     handleFormValue = event => {
-      console.log(this.state.gname.length);
-      console.log(this.state.imageUrl.length);
       event.preventDefault();
+      console.log(this.state);  
     };
 
-    checkReponseFromGoogle = () => {
-      if (this.state.gname.length === 0)
-      {
-        return false;
-      }
-      else
-      {
-        return true;
-      }
-    }
 }
  
 export default RegisterForm;
