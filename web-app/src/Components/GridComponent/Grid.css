@@ -1,0 +1,14 @@
+.cbox{
+    
+    background-color: green;
+}
+
+
+.dbox{
+    height: 35px;
+    border: 1px solid blue;
+}
+
+.inputStyle{
+    height: 30px;
+}
