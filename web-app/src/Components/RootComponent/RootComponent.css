@@ -1,0 +1,34 @@
+.cbox{
+    
+    background-color: black;
+    height: 50px;
+}
+
+img {
+    border-radius: 50%;
+    height: 50px;
+    right: 10%;
+  }
+
+
+.dbox{
+    height: 35px;
+    border: 1px solid blue;
+}
+
+.inputStyle{
+    height: 30px;
+}
+
+.navBarStyle{
+   margin-left: 550px;
+}
+
+.navBarControl{
+    margin-left: 5px;
+}
+
+
+h5 {
+    color: rgb(26, 134, 235);
+  }

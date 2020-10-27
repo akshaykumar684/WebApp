@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Form from '../FormComponent/RegisterForm'
 import Google from '../GoogleLoginAuthComponent/GoogleLogin'
+import './RootComponent.css'
+
 class Root extends Component {
   state = {
     username: "",
@@ -12,9 +14,9 @@ class Root extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-dark bg-dark">
+        <div className="cbox">
             {this.checkReponseFromGoogle() ? this.renderGoogleInfo() : this.renderForm()}
-        </nav>
+        </div>
         <div className="form-row">
           <div className="form-group input-group col md 6"></div>
           <div className="form-group input-group col md 6"></div>
@@ -31,7 +33,7 @@ class Root extends Component {
   renderForm = () => {
       return (
         <form onSubmit={this.handleLoginForm} className="form-inline" autoComplete="off">
-          <div className="input-group col md 6">
+          <div className="input-group navBarStyle">
             <input
               type="text"
               value = {this.state.username}
@@ -43,11 +45,11 @@ class Root extends Component {
               onChange={this.handleFormElementChange}
             />
           </div>
-          <div className="input-group col md 6">
+          <div className="input-group navBarControl">
             <input
               type="password"
               value={this.state.password}
-              className="form-control"
+              className="form-control navBarControl"
               placeholder="Password"
               aria-label="Password"
               aria-describedby="basic-addon1"
@@ -55,16 +57,14 @@ class Root extends Component {
               onChange={this.handleFormElementChange}
             />
           </div>
-          <div className="input group prepend col md 6">
+          <div className="input group prepend navBarControl">
             <button type="submit" className="btn btn-primary">
               Login
             </button>
           </div>
-          <div className="input group prepend">
-            <div className="input group prepend">
+          <div className="input group prepend navBarControl">
               <Google responseGoogle={this.responseGoogle} />
             </div>
-          </div>
         </form>
       );
   }
@@ -91,14 +91,10 @@ class Root extends Component {
   renderGoogleInfo = () => {
     const { gname, imageUrl } = this.state;
     return (
-      <div className="form-row">
-        <div className="input-group col md 6">
+      <div className="input-group navBarStyle">
           <h5>Welcome {gname}</h5>
-        </div>
-        <div className="input-group col md 6">
           <img src={imageUrl} alt={gname} />
         </div>
-      </div>
     );
   };
 

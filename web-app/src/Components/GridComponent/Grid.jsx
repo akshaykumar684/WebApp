@@ -4,8 +4,8 @@ class Grid extends Component {
     state = {  }
     render() { 
         return (
-          <div className="container cbox">
-            <div className="row">
+          <div >
+            <div className="row cbox">
               <div className="col-sm-1 dbox">1</div>
               <div className="col-sm-1 dbox">2</div>
               <div className="col-sm-1 dbox">3</div>
