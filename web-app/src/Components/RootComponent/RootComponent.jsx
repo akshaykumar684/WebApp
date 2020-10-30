@@ -47,6 +47,7 @@ class Root extends Component {
     this.setState({
       gname: response.profileObj.givenName,
       imageUrl: response.profileObj.imageUrl,
+      showLogInModal : false
     });
     console.log(response);
   };

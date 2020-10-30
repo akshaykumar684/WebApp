@@ -3,11 +3,6 @@ import { Modal } from 'react-bootstrap'
 import Google from '../GoogleLoginAuthComponent/GoogleLogin'
 class LogInModal extends Component {
 
-    constructor(props) {
-        super(props);
-        this.wrapper = React.createRef();
-    }
-
     state = {
         email: '',
         password: ''
@@ -17,7 +12,7 @@ class LogInModal extends Component {
         const { showLogInModal, Login } = this.props;
         return (
             <div>
-                <Modal ref={this.wrapper} show={showLogInModal} onHide={Login}>
+                <Modal show={showLogInModal} onHide={Login}>
                     <Modal.Header closeButton> Login</Modal.Header>
                     <Modal.Body>
                         <div className="modal-body">
@@ -36,7 +31,7 @@ class LogInModal extends Component {
                                     <label className="form-check-label">Student</label>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Login</button>
-                                <button type="button" ref={this.wrapper} onClick={Login} className="btn btn-secondary mx-1">Close</button>
+                                <button type="button" onClick={Login} className="btn btn-secondary mx-1">Close</button>
                                 <Google responseGoogle={this.props.responseGoogle} />
                             </form>
                         </div>

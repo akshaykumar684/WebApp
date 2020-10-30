@@ -3,12 +3,6 @@ import { Modal } from 'react-bootstrap'
 
 
 class SignUpModal extends Component {
-
-    constructor(props) {
-        super(props);
-        this.wrapper = React.createRef();
-      }
-
     state = {
         email : '',
         password : '',
@@ -19,7 +13,7 @@ class SignUpModal extends Component {
         const{showSignUpModal,SignUp} = this.props;
         return (
             <div>
-                <Modal ref={this.wrapper} show={showSignUpModal} onHide={SignUp}>
+                <Modal show={showSignUpModal} onHide={SignUp}>
                     <Modal.Header closeButton>SignUp</Modal.Header>
                     <Modal.Body>
                         <div className="modal-body">
@@ -42,7 +36,7 @@ class SignUpModal extends Component {
                                     <label className="form-check-label">Student</label>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Create Account</button>
-                                <button type="button" ref={this.wrapper} onClick={SignUp} className="btn btn-secondary mx-1" data-dismiss="modal">Close</button>
+                                <button type="button" onClick={SignUp} className="btn btn-secondary mx-1" data-dismiss="modal">Close</button>
                             </form>
                         </div>
                     </Modal.Body>
