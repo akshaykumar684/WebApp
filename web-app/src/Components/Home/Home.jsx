@@ -47,21 +47,21 @@ class Home extends Component {
                                 width="140" height="140" alt="..." />
                             <h2>Mentor</h2>
                             <p>“A mentor is someone who allows you to see the hope inside yourself.” — Oprah Winfrey.</p>
-                            <p><a className="btn btn-secondary" href="#" role="button">View details »</a></p>
+                            <p><a className="btn btn-secondary" href="/home" role="button">View details »</a></p>
                         </div>
                         <div className="col-lg-4">
                             <img src="https://source.unsplash.com/140x140/?Computer" className="bd-placeholder-img rounded-circle"
                                 width="140" height="140" alt="..." />
                             <h2>Student</h2>
                             <p>“Don’t let what you cannot do interfere with what you can do.” – John Wooden</p>
-                            <p><a className="btn btn-secondary" href="#" role="button">View details »</a></p>
+                            <p><a className="btn btn-secondary" href="/home" role="button">View details »</a></p>
                         </div>
                         <div className="col-lg-4">
                             <img src="https://source.unsplash.com/140x140/?Books" className="bd-placeholder-img rounded-circle"
                                 width="140" height="140" alt="..." />
                             <h2>Guest</h2>
                             <p>“Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.” – Thomas A. Edison.</p>
-                            <p><a className="btn btn-secondary" href="#" role="button">View details »</a></p>
+                            <p><a className="btn btn-secondary" href="/home" role="button">View details »</a></p>
                         </div>
                     </div>
                 </div>

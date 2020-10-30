@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-
+import { Link } from "react-router-dom"
+import './Footer.css'
 class Footer extends Component {
     
     render() { 
         return ( 
-            <footer className="container">
-                <p className="float-right"><a href="#">Back to Top</a></p>
-                <p>2020-2021 Akshay,Inc. <a href="#">Privacy</a></p>
+            <footer className="container site-footer">
+                <p className="float-right"><Link to="/home">Back to Top</Link></p>
+                <p>2020-2021 Akshay,Inc. <Link to="/home">Privacy</Link></p>
             </footer>
          );
     }

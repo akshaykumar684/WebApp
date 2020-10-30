@@ -8,27 +8,41 @@ import Contact from '../Contact/Contact'
 import Footer from '../Footer/Footer'
 import './RootComponent.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-//import Route from 'react-router-dom/Route'
+import SignUpModal from '../FormComponent/SignUpModal'
+import LogInModal from '../FormComponent/LogInModal'
 class Root extends Component {
   state = {
     username: "",
     password: "",
     gname: "",
     imageUrl: "",
+    showSignUpModal: false,
+    showLogInModal: false
   };
 
   render() {
     return (
       <Router>
         <div>
-          <NavBar />
-          <Route exact path="/"> <Home/> </Route>
-          <Route exact path="/home"> <Home/> </Route>
+          <NavBar SignUp={this.SignUp} Login={this.Login} />
+          <Route exact path="/"> <Home /> </Route>
+          <Route exact path="/home"> <Home /> </Route>
           <Route exact path="/about"> <About /> </Route>
           <Route exact path="/contact"> <Contact /> </Route>
+          <SignUpModal showSignUpModal={this.state.showSignUpModal} SignUp={this.SignUp} />
+          <LogInModal showLogInModal={this.state.showLogInModal} Login={this.Login} />
+          <Footer />
         </div>
       </Router>
     );
+  }
+
+  SignUp = () => {
+    this.setState({ showSignUpModal: !this.state.showSignUpModal });
+  }
+
+  Login = () => {
+    this.setState({ showLogInModal: !this.state.showLogInModal });
   }
 
 
