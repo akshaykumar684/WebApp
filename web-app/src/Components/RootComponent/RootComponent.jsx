@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-//import Form from '../FormComponent/RegisterForm'
-import Google from '../GoogleLoginAuthComponent/GoogleLogin'
 import NavBar from '../NavBar/navBar'
 import Home from '../Home/Home'
 import About from '../About/About'
@@ -24,13 +22,13 @@ class Root extends Component {
     return (
       <Router>
         <div>
-          <NavBar SignUp={this.SignUp} Login={this.Login} />
+          <NavBar SignUp={this.SignUp} Login={this.Login} imageUrl={this.state.imageUrl}/>
           <Route exact path="/"> <Home /> </Route>
           <Route exact path="/home"> <Home /> </Route>
           <Route exact path="/about"> <About /> </Route>
           <Route exact path="/contact"> <Contact /> </Route>
           <SignUpModal showSignUpModal={this.state.showSignUpModal} SignUp={this.SignUp} />
-          <LogInModal showLogInModal={this.state.showLogInModal} Login={this.Login} />
+          <LogInModal showLogInModal={this.state.showLogInModal} Login={this.Login} responseGoogle={this.responseGoogle}/>
           <Footer />
         </div>
       </Router>
@@ -45,57 +43,6 @@ class Root extends Component {
     this.setState({ showLogInModal: !this.state.showLogInModal });
   }
 
-
-  renderForm = () => {
-    return (
-      <form onSubmit={this.handleLoginForm} className="form-inline" autoComplete="off">
-        <div className="input-group navBarStyle">
-          <input
-            type="text"
-            value={this.state.username}
-            className="form-control"
-            placeholder="Username"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-            name="username"
-            onChange={this.handleFormElementChange}
-          />
-        </div>
-        <div className="input-group navBarControl">
-          <input
-            type="password"
-            value={this.state.password}
-            className="form-control navBarControl"
-            placeholder="Password"
-            aria-label="Password"
-            aria-describedby="basic-addon1"
-            name="password"
-            onChange={this.handleFormElementChange}
-          />
-        </div>
-        <div className="input group prepend navBarControl">
-          <button type="submit" className="btn btn-primary">
-            Login
-            </button>
-        </div>
-        <div className="input group prepend navBarControl">
-          <Google responseGoogle={this.responseGoogle} />
-        </div>
-      </form>
-    );
-  }
-
-  handleLoginForm = (event) => {
-    event.preventDefault();
-    console.log(this.state);
-  };
-
-  handleFormElementChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
   responseGoogle = (response) => {
     this.setState({
       gname: response.profileObj.givenName,
@@ -104,15 +51,6 @@ class Root extends Component {
     console.log(response);
   };
 
-  renderGoogleInfo = () => {
-    const { gname, imageUrl } = this.state;
-    return (
-      <div className="input-group navBarStyle">
-        <h5>Welcome {gname}</h5>
-        <img src={imageUrl} alt={gname} />
-      </div>
-    );
-  };
 
   checkReponseFromGoogle = () => {
     if (this.state.gname.length === 0) {

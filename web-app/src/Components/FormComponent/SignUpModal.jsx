@@ -3,39 +3,62 @@ import { Modal } from 'react-bootstrap'
 
 
 class SignUpModal extends Component {
+
+    constructor(props) {
+        super(props);
+        this.wrapper = React.createRef();
+      }
+
+    state = {
+        email : '',
+        password : '',
+        confirmpasssword : ''
+    }
     render() {
+        const{email,password,confirmpasssword} = this.state;
+        const{showSignUpModal,SignUp} = this.props;
         return (
             <div>
-                <Modal show={this.props.showSignUpModal} onHide={this.props.SignUp}>
+                <Modal ref={this.wrapper} show={showSignUpModal} onHide={SignUp}>
                     <Modal.Header closeButton>SignUp</Modal.Header>
                     <Modal.Body>
                         <div className="modal-body">
-                            <form>
+                            <form onSubmit={this.onFormSubmit} autoComplete="off">
                                 <div className="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    <label>Email address</label>
+                                    <input type="email" value={email} onChange={this.handleFormData} name="email" required className="form-control" aria-describedby="emailHelp" />
+                                    <small className="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" />
+                                    <label>Password</label>
+                                    <input type="password" value={password} onChange={this.handleFormData} name="password" required className="form-control"/>
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleInputPassword1">Confirm Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" />
+                                    <label>Confirm Password</label>
+                                    <input type="password" value={confirmpasssword} onChange={this.handleFormData} name="confirmpasssword" required className="form-control"/>
                                 </div>
                                 <div className="form-group form-check">
-                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                    <label className="form-check-label" for="exampleCheck1">Student</label>
+                                    <input type="checkbox" className="form-check-input"/>
+                                    <label className="form-check-label">Student</label>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Create Account</button>
-                                <button type="button" className="btn btn-secondary mx-1" data-dismiss="modal">Close</button>
+                                <button type="button" ref={this.wrapper} onClick={SignUp} className="btn btn-secondary mx-1" data-dismiss="modal">Close</button>
                             </form>
                         </div>
                     </Modal.Body>
                 </Modal>
             </div>
         );
+    }
+
+    handleFormData = (event) => {
+        this.setState({
+            [event.target.name] : event.target.value
+        });
+    }
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
     }
 }
 

@@ -8,11 +8,11 @@ class Contact extends Component {
                 <div className="container my-4">
                     <form>
                         <div className="form-group">
-                            <label for="exampleFormControlInput1">Email address</label>
+                            <label>Email address</label>
                             <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
                         </div>
                         <div className="form-group">
-                            <label for="exampleFormControlSelect1">Example select</label>
+                            <label>Example select</label>
                             <select className="form-control" id="exampleFormControlSelect1">
                                 <option>1</option>
                                 <option>2</option>
@@ -22,7 +22,7 @@ class Contact extends Component {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label for="exampleFormControlTextarea1">Example textarea</label>
+                            <label>Example textarea</label>
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                         <button className="btn btn-primary">Submit</button>

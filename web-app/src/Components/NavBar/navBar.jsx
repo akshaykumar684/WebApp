@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 class NavBar extends Component {
+    state = {
+        search: '',
+        showButton: true
+    }
     render() {
+        const { search } = this.state;
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <Link className="navbar-brand">Akshay</Link>
@@ -16,7 +21,7 @@ class NavBar extends Component {
                             <Link className="nav-link" to="home">Home <span className="sr-only"></span></Link>
                         </li>
                         <li className="nav-item">
-                            
+                            <Link className="nav-link" to="about">About <span className="sr-only"></span></Link>
                         </li>
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" to="/home" id="navbarDropdown" role="button"
@@ -34,24 +39,32 @@ class NavBar extends Component {
                             <Link className="nav-link" to="contact">Contact Us <span className="sr-only"></span></Link>
                         </li>
                     </ul>
-                    <form className="form-inline my-2 my-lg-0 mx-1">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    <form className="form-inline my-2 my-lg-0 mx-1" onSubmit={this.onFormSubmit} autoComplete="off">
+                        <input className="form-control mr-sm-2" type="search" value={search} onChange={this.handleFormData} name="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
-                    <div className="mx-1">
-                        <button type="button" className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#LoginModal" onClick={this.props.Login}>Login</button>
-                    </div>
-                    <div className="mx-1">
-                        <button type="button" className="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#signUpModal" onClick={this.props.SignUp}>SignUp</button>
-
-                    </div>
+                    {this.props.imageUrl.length === 0 ?
+                        <div className="mx-1">
+                            <button type="button" className="btn btn-outline-success my-2 my-sm-0" onClick={this.props.Login}>Login</button>
+                            <button type="button" className="btn btn-outline-success my-2 my-sm-0 mx-1" onClick={this.props.SignUp}>SignUp</button>
+                        </div>
+                        :
+                        <img src= {this.props.imageUrl} className="bd-placeholder-img rounded-circle"
+                                width="40" height="40" alt="..." />
+                    }
                 </div>
             </nav>
         );
     }
 
-    ButtonClick = () => {
-        console.log("button clicked");
+    handleFormData = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
     }
 }
 

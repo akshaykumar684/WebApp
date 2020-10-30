@@ -1,37 +1,59 @@
 import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap'
-
+import Google from '../GoogleLoginAuthComponent/GoogleLogin'
 class LogInModal extends Component {
 
+    constructor(props) {
+        super(props);
+        this.wrapper = React.createRef();
+    }
+
+    state = {
+        email: '',
+        password: ''
+    }
     render() {
+        const { email, password } = this.state;
+        const { showLogInModal, Login } = this.props;
         return (
             <div>
-                <Modal show={this.props.showLogInModal} onHide={this.props.Login}>
+                <Modal ref={this.wrapper} show={showLogInModal} onHide={Login}>
                     <Modal.Header closeButton> Login</Modal.Header>
                     <Modal.Body>
                         <div className="modal-body">
-                            <form>
+                            <form onSubmit={this.submitLoginData} autoComplete="off">
                                 <div className="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    <label>Email</label>
+                                    <input type="email" value={email} name="email" onChange={this.HandleFormData} required className="form-control" aria-describedby="emailHelp" />
+                                    <small className="form-text text-muted">We'll never share your email with anyone else.</small>
                                 </div>
                                 <div className="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" />
+                                    <label>Password</label>
+                                    <input type="password" value={password} name="password" onChange={this.HandleFormData} required className="form-control" />
                                 </div>
                                 <div className="form-group form-check">
-                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                    <label className="form-check-label" for="exampleCheck1">Student</label>
+                                    <input type="checkbox" className="form-check-input" />
+                                    <label className="form-check-label">Student</label>
                                 </div>
                                 <button type="submit" className="btn btn-primary">Login</button>
-                                <button type="button" className="btn btn-secondary mx-1" data-dismiss="modal">Close</button>
+                                <button type="button" ref={this.wrapper} onClick={Login} className="btn btn-secondary mx-1">Close</button>
+                                <Google responseGoogle={this.props.responseGoogle} />
                             </form>
                         </div>
                     </Modal.Body>
                 </Modal>
             </div>
         );
+    }
+
+    HandleFormData = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
+    submitLoginData = (event) => {
+        event.preventDefault();
     }
 }
 
