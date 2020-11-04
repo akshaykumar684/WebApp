@@ -7,7 +7,7 @@ class Footer extends Component {
         return ( 
             <footer className="container site-footer">
                 <p className="float-right"><Link to="/home">Back to Top</Link></p>
-                <p>2020-2021 Akshay,Inc. <Link to="/home">Privacy</Link></p>
+                <p>2020-2021 Akshay Kumar,Inc. <Link to="/home">Privacy</Link></p>
             </footer>
          );
     }
