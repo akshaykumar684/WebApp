@@ -144,7 +144,7 @@ class Home extends Component {
                 /> */}
               </div>
             </div>
-            <div class="col">
+            <div className="col">
               <div className="row-sm-4">
                 <br />
                 <br />

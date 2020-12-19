@@ -1,90 +1,35 @@
 import React, { Component } from "react";
 
 class Test extends Component {
+
+    state = {
+        loading : true,
+        users : []
+    };
+    componentDidMount()
+    {
+        console.log("Inside Component Did mount");
+        fetch("https://jsonplaceholder.typicode.com/users")
+          .then((response) => response.json())
+          .then((json) => {
+            console.log(json);
+            this.setState({
+                loading : false,
+                users : json
+            })
+          });
+    }
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div>
-              <img
-                src="https://source.unsplash.com/1024x1024/?Coder"
-                className="bd-placeholder-img"
-                width="540"
-                height="340"
-                alt="..."
-              />
-            </div>
-          </div>
-          <div className="col">
-          <div className="row-sm-4"><br/><br/> <br/><br/></div>
-            <div>
-              <h3>Our Story</h3>
-              <p>
-                MySocialCapital originated with the idea of making meaningful
-                professional connections. Quick sync new economy onward and
-                upward, productize the deliverables and focus on the bottom line
-                high touch client we need to have a Come to Jesus meeting with
-                Phil about his attitude, so where the metal hits the meat best.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col">
-          <div className="row-sm-4"><br/><br/> <br/><br/></div>
-            <div>
-              <h3>We are driven by values</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-                Line high touch client we need to have a Come to Jesus meeting
-                with Phil about his attitude, so where the.
-              </p>
-            </div>
-          </div>
-          <div className="col">
-            <div>
-              <img
-                src="https://source.unsplash.com/1024x1024/?Coder"
-                className="bd-placeholder-img"
-                width="540"
-                height="340"
-                alt="..."
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col">
-            <div>
-              <img
-                src="https://source.unsplash.com/1024x1024/?Coder"
-                className="bd-placeholder-img"
-                width="540"
-                height="340"
-                alt="..."
-              />
-            </div>
-          </div>
-          <div className="col">
-          <div className="row-sm-4"><br/><br/> <br/><br/></div>
-            <div className="row-sm-4">
-              <div>
-                <h3>Our Story</h3>
-                <p>
-                  qqqqqqqqqqqqqqqqqqqqqqq
-                  qqqqqqqqqqqqqqqqqqqqqqqqq
-                  qqqqqqqqqqqqqqqqqqqqqqq
-                  best.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+     <div>
+         {this.state.loading?<p>loading</p>:
+         <ul>
+             {this.state.users.map(user => (
+                 <li key={user.id}>{user.name}</li>
+             ))}
+         </ul>
+         }
+     </div>
     );
   }
 }
