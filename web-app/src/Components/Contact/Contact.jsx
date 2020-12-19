@@ -1,36 +1,41 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Contact extends Component {
-    render() {
-        return (
-            <div className="container my-4">
-                <h2>Contact Us:</h2>
-                <div className="container my-4">
-                    <form>
-                        <div className="form-group">
-                            <label>Email address</label>
-                            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
-                        </div>
-                        <div className="form-group">
-                            <label>Example select</label>
-                            <select className="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div className="form-group">
-                            <label>Example textarea</label>
-                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <button className="btn btn-primary">Submit</button>
-                    </form>
-                </div>
+  render() {
+    return (
+      <div className="container my-4">
+        <div className="card-deck mb-3 text-center">
+          <div className="card mb-4 shadow-sm">
+            <div className="card-header">
+              <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+              <h4 className="my-0 font-weight-normal">Call Us</h4>
             </div>
-        );
-    }
+            <div className="card-body">
+              <h7>966361431/7022625203 | 24×7</h7>
+            </div>
+          </div>
+          <div className="card mb-4 shadow-sm">
+            <div className="card-header">
+              <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+              <h4 className="my-0 font-weight-normal">Email</h4>
+            </div>
+            <div className="card-body">
+              <h7>info@mysocialcapital.in</h7>
+            </div>
+          </div>
+          <div className="card mb-4 shadow-sm">
+            <div className="card-header">
+            <i class="fa fa-building fa-2x" aria-hidden="true"></i>
+              <h4 className="my-0 font-weight-normal">Offices</h4>
+            </div>
+            <div className="card-body">
+              <h7>307, Meenaakshi Paradise Hosapalya Main Road 560068</h7>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Contact;

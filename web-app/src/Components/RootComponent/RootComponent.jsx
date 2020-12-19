@@ -3,6 +3,7 @@ import NavBar from '../NavBar/navBar'
 import Home from '../Home/Home'
 import About from '../About/About'
 import Contact from '../Contact/Contact'
+import Test from '../TestComponent/TestComponent'
 import Footer from '../Footer/Footer'
 import './RootComponent.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -27,6 +28,7 @@ class Root extends Component {
           <Route exact path="/home"> <Home /> </Route>
           <Route exact path="/about"> <About /> </Route>
           <Route exact path="/contact"> <Contact /> </Route>
+          <Route exact path="/test"> <Test /> </Route>
           <SignUpModal showSignUpModal={this.state.showSignUpModal} SignUp={this.SignUp} />
           <LogInModal showLogInModal={this.state.showLogInModal} Login={this.Login} responseGoogle={this.responseGoogle}/>
           <Footer />
