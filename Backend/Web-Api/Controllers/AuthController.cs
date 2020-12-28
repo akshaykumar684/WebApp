@@ -24,7 +24,7 @@ namespace Web_Api.Controllers
         {
             User user = _mapper.Map<User>(newuser);
             var response = await _authRepo.Register(user,newuser.Password);
-            if(!response.Success)
+            if(!response.IsSuccess)
             {
                 return BadRequest(response);
             }
@@ -35,7 +35,7 @@ namespace Web_Api.Controllers
         public async Task<IActionResult> Login(UserLoginDto user)
         {
             var response = await _authRepo.Login(user.Username,user.Password);
-            if(!response.Success)
+            if(!response.IsSuccess)
             {
                 return BadRequest(response);
             }

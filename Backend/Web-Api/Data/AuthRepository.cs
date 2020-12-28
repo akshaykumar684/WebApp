@@ -26,12 +26,12 @@ namespace Web_Api.Data
             User user = await _dataContext.Users.FirstOrDefaultAsync(t => t.Username.ToLower().Equals(username.ToLower()));
             if (user == null)
             {
-                response.Success = false;
+                response.IsSuccess = false;
                 response.Message = "User Not Found";
             }
             else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
             {
-                response.Success = false;
+                response.IsSuccess = false;
                 response.Message = "Invalid Password";
             }
             else
@@ -45,21 +45,29 @@ namespace Web_Api.Data
         {
             var response = new ServiceResponse<int>();
 
-            if (await UserExists(user.Username))
+            try
             {
-                response.Success = false;
-                response.Message = "User already exists";
-                return response;
+                if (await UserExists(user.Username))
+                {
+                    response.IsSuccess = false;
+                    response.Message = "User already exists";
+                    return response;
+                }
+
+                CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+
+                await _dataContext.Users.AddAsync(user);
+                await _dataContext.SaveChangesAsync();
+
+                response.Data = user.UserId;
             }
-
-            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-
-            await _dataContext.Users.AddAsync(user);
-            await _dataContext.SaveChangesAsync();
-
-            response.Data = user.UserId;
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.Message = ex.InnerException.Message;                
+            }
             return response;
         }
 

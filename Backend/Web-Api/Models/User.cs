@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Web_Api.Models.Enum;
 
 namespace Web_Api.Models
@@ -6,12 +7,16 @@ namespace Web_Api.Models
     {
         public int UserId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string Username { get; set; }
 
+        [Required]
         public string Email { get; set; }
 
+        [Required]
         public string Mobile { get; set; }
 
         public byte[] PasswordHash { get; set; }
