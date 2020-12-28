@@ -12,14 +12,14 @@ namespace Web_Api.Models
 
         public string Email { get; set; }
 
-        public int MobileNo { get; set; }
+        public string Mobile { get; set; }
 
         public byte[] PasswordHash { get; set; }
 
         public byte[] PasswordSalt { get; set; }
 
-        public TypeOfUsers UserType { get; set; }
+        public TypeOfUsers UserType { get; set; } = TypeOfUsers.Student;
 
-        public Gender Gender { get; set; }
+        public Gender Gender { get; set; } = Gender.Male;
     }
 }

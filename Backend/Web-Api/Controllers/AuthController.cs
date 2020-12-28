@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Web_Api.Data;
 using Web_Api.Dtos.User;
@@ -11,15 +12,18 @@ namespace Web_Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _authRepo;
-        public AuthController(IAuthRepository authRepo)
+        private readonly IMapper _mapper;
+        public AuthController(IAuthRepository authRepo,IMapper mapper)
         {
             _authRepo = authRepo;
+            _mapper = mapper;
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register(UserRegisterDto user)
+        public async Task<IActionResult> Register(UserRegisterDto newuser)
         {
-            var response = await _authRepo.Register(new User{ Username = user.Username},user.Password);
+            User user = _mapper.Map<User>(newuser);
+            var response = await _authRepo.Register(user,newuser.Password);
             if(!response.Success)
             {
                 return BadRequest(response);

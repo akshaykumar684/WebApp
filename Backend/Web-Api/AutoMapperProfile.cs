@@ -1,5 +1,7 @@
 using System.Linq;
 using AutoMapper;
+using Web_Api.Dtos.User;
+using Web_Api.Models;
 
 namespace WebApiLearn
 {
@@ -7,7 +9,7 @@ namespace WebApiLearn
     {
         public AutoMapperProfile()
         {
-            
+             CreateMap<UserRegisterDto,User>();
         }
     }
 }
