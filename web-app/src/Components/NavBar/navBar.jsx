@@ -134,6 +134,12 @@ class NavBar extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
+    console.log("Form Submitted");
+    fetch("http://localhost:5000/WeatherForecast")
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+      });
   };
 }
 
