@@ -101,7 +101,10 @@ class SignUpModal extends Component {
                     className="form-control"
                   />
                 </div>
-                <div className="form-group form-check float-container" style={{display:"flex",justifyContent:"space-around"}}>
+                <div
+                  className="form-group form-check float-container"
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
                   <div className="float-child">
                     <input
                       type="checkbox"
@@ -123,17 +126,11 @@ class SignUpModal extends Component {
                     <label className="form-check-label">Mentor</label>
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary">
+               <div style={{ display: "flex", justifyContent: "space-around" }}>
+               <button type="submit" className="btn btn-primary">
                   Create Account
                 </button>
-                <button
-                  type="button"
-                  onClick={SignUp}
-                  className="btn btn-secondary mx-1"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
+               </div>
               </form>
             </div>
           </Modal.Body>
@@ -168,12 +165,14 @@ class SignUpModal extends Component {
     axios
       .post("http://localhost:5000/Dummy/test", this.state)
       .then((response) => {
-        console.log(response);
+        if (response.data.isLoginSucessfull === true) {
+          this.props.SignUp();
+        }
       })
       .catch((error) => {
         console.log(error);
       });
-    };
+  };
 }
 
 export default SignUpModal;
