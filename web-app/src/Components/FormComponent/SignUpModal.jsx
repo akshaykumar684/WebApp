@@ -9,8 +9,11 @@ class SignUpModal extends Component {
     mobile: "",
     password: "",
     confirmpasssword: "",
-    IsStudent: false,
-    IsMentor: true,
+    IsStudent: true,
+    IsMentor: false,
+    IsMale: true,
+    IsFemale:false,
+    UserType: 1
   };
   render() {
     const {
@@ -22,6 +25,8 @@ class SignUpModal extends Component {
       confirmpasssword,
       IsStudent,
       IsMentor,
+      IsMale,
+      IsFemale
     } = this.state;
     const { showSignUpModal, SignUp } = this.props;
     return (
@@ -108,6 +113,31 @@ class SignUpModal extends Component {
                   <div className="float-child">
                     <input
                       type="checkbox"
+                      checked={IsMale}
+                      name="IsMale"
+                      onChange={this.handleGenderCheckboxData}
+                      className="form-check-input"
+                    />
+                    <label className="form-check-label">Male</label>
+                  </div>
+                  <div className="float-child">
+                    <input
+                      type="checkbox"
+                      checked={IsFemale}
+                      name="IsFemale"
+                      onChange={this.handleGenderCheckboxData}
+                      className="form-check-input"
+                    />
+                    <label className="form-check-label">Female</label>
+                  </div>
+                </div>
+                <div
+                  className="form-group form-check float-container"
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <div className="float-child">
+                    <input
+                      type="checkbox"
                       checked={IsStudent}
                       name="IsStudent"
                       onChange={this.handleCheckboxData}
@@ -126,11 +156,13 @@ class SignUpModal extends Component {
                     <label className="form-check-label">Mentor</label>
                   </div>
                 </div>
-               <div style={{ display: "flex", justifyContent: "space-around" }}>
-               <button type="submit" className="btn btn-primary">
-                  Create Account
-                </button>
-               </div>
+                <div
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <button type="submit" className="btn btn-primary">
+                    Create Account
+                  </button>
+                </div>
               </form>
             </div>
           </Modal.Body>
@@ -160,18 +192,60 @@ class SignUpModal extends Component {
     }
   };
 
+  handleGenderCheckboxData = (event) => {
+    if (event.target.name === "IsMale") {
+      this.setState({
+        [event.target.name]: event.target.checked,
+        IsFemale: !event.target.checked,
+      });
+    }
+    if (event.target.name === "IsFemale") {
+      this.setState({
+        [event.target.name]: event.target.checked,
+        IsMale: !event.target.checked,
+      });
+    }
+  };
+
   onFormSubmit = (event) => {
     event.preventDefault();
+    var obj = {
+      username: this.state.username,
+      name: this.state.name,
+      email: this.state.email,
+      mobile: this.state.mobile,
+      password: this.state.password,
+      UserType: this.state.IsStudent ? 1 : 2,
+      Gender: this.state.IsMale ? 1 : 2
+    };
+    
     axios
-      .post("http://localhost:5000/Dummy/test", this.state)
+      .post("http://localhost:5000/Auth/Register", obj)
       .then((response) => {
-        if (response.data.isLoginSucessfull === true) {
-          this.props.SignUp();
+        console.log(response);
+        if (response.data.isSuccess) {
+          this.resetAllState();
+          this.props.isRegistrationSucessfull(true,response.data.message);
+        } else if (!response.data.isSuccess) {
+          this.props.isRegistrationSucessfull(false,response.data.message);
         }
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  resetAllState = () => {
+    this.setState({
+      username: "",
+      name: "",
+      email: "",
+      mobile: "",
+      password: "",
+      confirmpasssword: "",
+      IsStudent: false,
+      IsMentor: true,
+    });
   };
 }
 

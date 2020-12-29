@@ -9,6 +9,9 @@ import './RootComponent.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUpModal from '../FormComponent/SignUpModal'
 import LogInModal from '../FormComponent/LogInModal'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 class Root extends Component {
   state = {
     username: "",
@@ -29,22 +32,58 @@ class Root extends Component {
           <Route exact path="/about"> <About /> </Route>
           <Route exact path="/contact"> <Contact /> </Route>
           <Route exact path="/test"> <Test /> </Route>
-          <SignUpModal showSignUpModal={this.state.showSignUpModal} SignUp={this.SignUp} />
-          <LogInModal showLogInModal={this.state.showLogInModal} Login={this.Login} responseGoogle={this.responseGoogle}/>
+          <SignUpModal showSignUpModal={this.state.showSignUpModal} SignUp={this.SignUp} isRegistrationSucessfull = {this.isRegistrationSucessfull}/>
+          <LogInModal showLogInModal={this.state.showLogInModal} Login={this.Login} responseGoogle={this.responseGoogle} isLoginSucessfull = {this.isLoginSucessfull}/>
           <Footer />
         </div>
       </Router>
     );
   }
 
+
+  ///////////////////////SignUp//////////////////////
   SignUp = () => {
     this.setState({ showSignUpModal: !this.state.showSignUpModal });
+    // toast.configure();
+    // toast.success('Sucessfull');
+    // toast.error("Error");
   }
 
+  isRegistrationSucessfull = (isSucess,message) => {
+    toast.configure();
+    if(isSucess)
+    {
+      toast.success('Sucessfull');
+      this.SignUp();
+    }
+    else
+    {
+      toast.error(message);
+    }
+  }
+///////////////////////Login///////////////////////////////////
   Login = () => {
     this.setState({ showLogInModal: !this.state.showLogInModal });
   }
 
+  isLoginSucessfull = (isSucess) => {
+    toast.configure();
+    if(isSucess)
+    {
+      toast.success('Login Sucessfull');
+      this.setState(
+        {
+          imageUrl : "https://lh3.googleusercontent.com/a-/AOh14Gh4g055TrgATh7U4Oa9hJ0VevnjVL6j0Rdw9eXwvQ=s96-c"
+        }
+      );
+      this.Login();
+    }
+    else
+    {
+      toast.error("Invalid Credentials");
+    }
+  }
+//////////////////////////////Google Auth/////////////////////
   responseGoogle = (response) => {
     this.setState({
       gname: response.profileObj.givenName,

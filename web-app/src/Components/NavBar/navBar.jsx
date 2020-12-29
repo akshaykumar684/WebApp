@@ -36,31 +36,7 @@ class NavBar extends Component {
                 About <span className="sr-only"></span>
               </Link>
             </li>
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle"
-                to="/home"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Topics
-              </Link>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link className="dropdown-item" to="/home">
-                  .NET
-                </Link>
-                <Link className="dropdown-item" to="/home">
-                  C#
-                </Link>
-                <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" to="/home">
-                  WPF
-                </Link>
-              </div>
-            </li>
+            
             <li className="nav-item">
               <Link className="nav-link" to="contact">
                 Contact Us <span className="sr-only"></span>
