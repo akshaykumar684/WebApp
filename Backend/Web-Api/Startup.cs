@@ -76,6 +76,8 @@ namespace Web_Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseCors();
 
             app.UseAuthorization();

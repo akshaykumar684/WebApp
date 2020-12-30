@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal } from "react-bootstrap";
 import Google from "../GoogleLoginAuthComponent/GoogleLogin";
-import axios from "axios";
+import axios from "../axios/axios";
 class LogInModal extends Component {
   state = {
     username: "",
@@ -40,11 +40,6 @@ class LogInModal extends Component {
                     className="form-control"
                   />
                 </div>
-                {/* <div className="form-group form-check">
-                  <input type="checkbox" className="form-check-input" />
-                  <label className="form-check-label">Student</label>
-                </div> */}
-
                 <div
                   style={{ display: "flex", justifyContent: "space-around" }}
                 >
@@ -68,15 +63,14 @@ class LogInModal extends Component {
     });
   };
 
-  submitLoginData = (event) => {
+  submitLoginData = async (event) => {
     event.preventDefault();
-    console.log(this.state);
 
-    axios
-      .post("http://localhost:5000/Auth/Login", this.state)
+     await axios
+      .post("Auth/Login", this.state)
       .then((response) => {
         if (response.data.isSuccess === true) {
-            console.log(response);
+          localStorage.setItem("savedToken","Bearer " + response.data.data)
           this.resetAllState();
           this.props.isLoginSucessfull(true);
         } else if (response.data.isSuccess === false) {

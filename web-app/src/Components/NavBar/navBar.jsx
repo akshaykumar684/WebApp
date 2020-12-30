@@ -36,7 +36,7 @@ class NavBar extends Component {
                 About <span className="sr-only"></span>
               </Link>
             </li>
-            
+
             <li className="nav-item">
               <Link className="nav-link" to="contact">
                 Contact Us <span className="sr-only"></span>
@@ -87,13 +87,23 @@ class NavBar extends Component {
               </button>
             </div>
           ) : (
-            <img
-              src={this.props.imageUrl}
-              className="bd-placeholder-img rounded-circle"
-              width="40"
-              height="40"
-              alt="..."
-            />
+            <div>
+              <img
+                src={this.props.imageUrl}
+                className="bd-placeholder-img rounded-circle"
+                width="40"
+                height="40"
+                alt="..."
+              />
+              {/* <button
+                type="button"
+                className="btn btn-outline-success my-2 my-sm-0 mx-1"
+                onClick={this.props.SignUp}
+              >
+                LogOut
+              </button> */}
+             
+            </div>
           )}
         </div>
       </nav>
@@ -110,12 +120,8 @@ class NavBar extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    console.log("Form Submitted");
-    fetch("http://localhost:5000/WeatherForecast")
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-      });
+    console.log("Form submitteed");
+    localStorage.removeItem("savedToken");
   };
 }
 

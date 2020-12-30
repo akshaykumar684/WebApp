@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web_Api.Data;
 using Web_Api.Dtos.User;
@@ -39,6 +40,15 @@ namespace Web_Api.Controllers
             // {
             //     return BadRequest(response);
             // }
+            return Ok(response);
+        }
+
+          
+        [Authorize]
+        [HttpGet("IsAuthenticated")]
+        public IActionResult IsAuthenticated()
+        {
+            var response = new {IsAuthenticated = true};
             return Ok(response);
         }
     }
