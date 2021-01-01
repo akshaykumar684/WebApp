@@ -6,12 +6,14 @@ import Contact from '../Contact/Contact'
 import Test from '../TestComponent/TestComponent'
 import Footer from '../Footer/Footer'
 import './RootComponent.css'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import SignUpModal from '../FormComponent/SignUpModal'
 import LogInModal from '../FormComponent/LogInModal'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from "../axios/axios";
+import history from "../../history"
+
 class Root extends Component {
   state = {
     username: "",
@@ -46,11 +48,12 @@ class Root extends Component {
 
   render() {
     return (
-      <Router>
+      <Router history = {history}>
         <div>
           <NavBar
             SignUp={this.SignUp}
             Login={this.Login}
+            Logout={this.Logout}
             imageUrl={this.state.imageUrl}
           />
           <Route exact path="/">
@@ -88,9 +91,6 @@ class Root extends Component {
   ///////////////////////SignUp//////////////////////
   SignUp = () => {
     this.setState({ showSignUpModal: !this.state.showSignUpModal });
-    // toast.configure();
-    // toast.success('Sucessfull');
-    // toast.error("Error");
   };
 
   isRegistrationSucessfull = (isSucess, message) => {
@@ -120,6 +120,13 @@ class Root extends Component {
       toast.error("Invalid Credentials");
     }
   };
+
+  Logout = () => {
+    this.setState({
+      imageUrl : ""
+    });
+  }
+
   //////////////////////////////Google Auth/////////////////////
   responseGoogle = (response) => {
     this.setState({

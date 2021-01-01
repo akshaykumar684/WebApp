@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import history from "../../history"
 class NavBar extends Component {
   state = {
     search: "",
@@ -95,14 +96,13 @@ class NavBar extends Component {
                 height="40"
                 alt="..."
               />
-              {/* <button
+              <button
                 type="button"
                 className="btn btn-outline-success my-2 my-sm-0 mx-1"
-                onClick={this.props.SignUp}
+                onClick={this.goToHome}
               >
                 LogOut
-              </button> */}
-             
+              </button>
             </div>
           )}
         </div>
@@ -120,9 +120,14 @@ class NavBar extends Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitteed");
-    localStorage.removeItem("savedToken");
+   
   };
+
+  goToHome = () => {
+    this.props.Logout();
+    history.push("/home");
+    localStorage.removeItem("savedToken");
+  }
 }
 
 export default NavBar;
