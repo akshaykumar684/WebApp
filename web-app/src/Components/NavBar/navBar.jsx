@@ -48,6 +48,16 @@ class NavBar extends Component {
                 Test Component <span className="sr-only"></span>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="grid">
+                Grid<span className="sr-only"></span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="service">
+                Service<span className="sr-only"></span>
+              </Link>
+            </li>
           </ul>
           <form
             className="form-inline my-2 my-lg-0 mx-1"
@@ -114,13 +124,10 @@ class NavBar extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log("data");
-    console.log(this.state.resObj);
   };
 
   onFormSubmit = (event) => {
     event.preventDefault();
-   
   };
 
   goToHome = () => {

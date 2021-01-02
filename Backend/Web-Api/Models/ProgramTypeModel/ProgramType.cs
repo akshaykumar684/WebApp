@@ -10,6 +10,8 @@ namespace Web_Api.Models.ProgramTypeModel
         [Required]
         public string ProgramTypeNames { get; set; }
 
+        public bool IsDeleted { get; set; } = false;
+
         public ServiceType ServiceType { get; set; }
     }
 }

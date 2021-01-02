@@ -6,6 +6,7 @@ import PBCImage from "./Images/PBCImage.png";
 import FlowDiagram from "./Images/FlowDiagram.png";
 import FlowDiagram2 from "./Images/FlowDiagram2.png";
 import Mentoring from "./Images/Mentoring.png";
+import history from "../../history"
 class Home extends Component {
   state = {};
   render() {
@@ -84,11 +85,12 @@ class Home extends Component {
               />
               <h2>Individual</h2>
               <p>Solutions for individual.</p>
-              <p>
+              {/* <p>
                 <a className="btn btn-secondary" href="/home" role="button">
                   View details »
                 </a>
-              </p>
+              </p> */}
+              <button type="button" className="btn btn-secondary" onClick={this.loadIndividualDetailsComponent}> View details »</button>
             </div>
             <div className="col-lg-4">
               <img
@@ -251,6 +253,9 @@ class Home extends Component {
         </div>
       </div>
     );
+  }
+  loadIndividualDetailsComponent = () => {
+    history.push("/test");
   }
 }
 

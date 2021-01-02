@@ -19,6 +19,8 @@ namespace Web_Api.Models
         [Required]
         public string Mobile { get; set; }
 
+        public bool isDeleted { get; set; } = false;
+
         public byte[] PasswordHash { get; set; }
 
         public byte[] PasswordSalt { get; set; }

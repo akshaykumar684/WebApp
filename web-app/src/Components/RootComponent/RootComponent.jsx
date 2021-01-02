@@ -4,7 +4,7 @@ import Home from '../Home/Home'
 import About from '../About/About'
 import Contact from '../Contact/Contact'
 import Test from '../TestComponent/TestComponent'
-import Footer from '../Footer/Footer'
+// import Footer from '../Footer/Footer'
 import './RootComponent.css'
 import { Router, Route } from 'react-router-dom';
 import SignUpModal from '../FormComponent/SignUpModal'
@@ -13,6 +13,9 @@ import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from "../axios/axios";
 import history from "../../history"
+import Grid from '../GridComponent/Grid'
+import Service from '../ServiceComponent/Service'
+
 
 class Root extends Component {
   state = {
@@ -71,6 +74,12 @@ class Root extends Component {
           <Route exact path="/test">
             <Test />
           </Route>
+          <Route exact path="/grid">
+            <Grid />
+          </Route>
+          <Route exact path="/service">
+            <Service />
+          </Route>
           <SignUpModal
             showSignUpModal={this.state.showSignUpModal}
             SignUp={this.SignUp}
@@ -82,7 +91,7 @@ class Root extends Component {
             responseGoogle={this.responseGoogle}
             isLoginSucessfull={this.isLoginSucessfull}
           />
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     );

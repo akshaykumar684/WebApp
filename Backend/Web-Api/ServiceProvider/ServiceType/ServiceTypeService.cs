@@ -24,7 +24,7 @@ namespace Web_Api.ServiceProvider.ServiceTypeProvider
         {
             var serviceResponse = new ServiceResponse<List<GetServiceTypeDto>>();
 
-            List<ServiceType> serviceType = await _dataContext.ServiceTypes.Include(s => s.ProgramTypes).Where(s => s.ServiceTypeId > 0).ToListAsync();
+            List<ServiceType> serviceType = await _dataContext.ServiceTypes.Include(s => s.ProgramTypes).Where(s => s.IsDeleted == false).ToListAsync();
 
             serviceResponse.Data = serviceType.Select(s => _mapper.Map<GetServiceTypeDto>(s)).ToList();
             return serviceResponse;
