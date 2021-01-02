@@ -18,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Web_Api.Data;
+using Web_Api.ServiceProvider.ServiceTypeProvider;
 
 namespace Web_Api
 {
@@ -37,6 +38,7 @@ namespace Web_Api
             services.AddControllers();
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IAuthRepository,AuthRepository>();
+            services.AddScoped<IServiceTypeService,ServiceTypeService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -51,7 +53,11 @@ namespace Web_Api
                 };
             });
 
-            services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web_Api", Version = "v1" });
