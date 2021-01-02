@@ -255,7 +255,7 @@ class Home extends Component {
     );
   }
   loadIndividualDetailsComponent = () => {
-    history.push("/test");
+    history.push("/service");
   }
 }
 

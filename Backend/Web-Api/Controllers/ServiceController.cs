@@ -17,8 +17,7 @@ namespace Web_Api.Controllers
         [HttpGet("GetServiceType")]
         public async Task<IActionResult> GetServiceType()
         {
-            var result = await _serviceTypeService.GetServiceType();
-            return Ok(result);
+            return Ok(await _serviceTypeService.GetServiceType());
         }
     }
 }

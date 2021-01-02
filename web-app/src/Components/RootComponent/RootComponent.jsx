@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import axios from "../axios/axios";
 import history from "../../history"
 import Grid from '../GridComponent/Grid'
-import Service from '../ServiceComponent/Service'
+import ServiceOffering from '../ServiceOfferingComponent/ServiceOffering'
 
 
 class Root extends Component {
@@ -78,7 +78,7 @@ class Root extends Component {
             <Grid />
           </Route>
           <Route exact path="/service">
-            <Service />
+            <ServiceOffering />
           </Route>
           <SignUpModal
             showSignUpModal={this.state.showSignUpModal}

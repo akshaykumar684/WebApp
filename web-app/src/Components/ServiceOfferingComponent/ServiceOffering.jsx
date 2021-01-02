@@ -1,19 +1,17 @@
 import React, { Component } from "react";
-import "./Service.css";
 import axios from "../axios/axios";
-class Service extends Component {
+import ServiceProgram from '../ServiceProgramComponent/ServiceProgramComponent'
+class ServiceOffering extends Component {
   state = {
     serviceData: [],
     isloading: true,
   };
 
   async componentDidMount() {
-    console.log("Indide component did moint");
     await axios
       .get("Service/GetServiceType")
       .then((response) => {
         if (response.data.isSuccess) {
-          console.log(response.data.data);
           let res = response.data.data.map((item) => {
             let abc = item.serviceTypeName;
             let value = [];
@@ -25,10 +23,9 @@ class Service extends Component {
               programs: value,
             };
           });
-          console.log({ res });
           this.setState({
-            serviceData: response.data.data,
             isloading: false,
+            serviceData: res
           });
         }
       })
@@ -41,14 +38,7 @@ class Service extends Component {
           <h1>Loading</h1>
         ) : (
           <div className="row">
-            <div className="col-sm-3 dbox">
-              <div>
-                <h1>Hello World</h1>
-              </div>
-            </div>
-            <div className="col-sm-3 dbox">2</div>
-            <div className="col-sm-3 dbox">3</div>
-            <div className="col-sm-3 dbox">4</div>
+            {this.state.serviceData.map(service => <ServiceProgram keyname={service.serviceName} item = {service.programs}/>)}
           </div>
         )}
       </div>
@@ -56,4 +46,4 @@ class Service extends Component {
   }
 }
 
-export default Service;
+export default ServiceOffering;
