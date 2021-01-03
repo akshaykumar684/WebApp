@@ -13,13 +13,13 @@ class ServiceOffering extends Component {
       .then((response) => {
         if (response.data.isSuccess) {
           let res = response.data.data.map((item) => {
-            let abc = item.serviceTypeName;
+            let serviceTypeName = item.serviceTypeName;
             let value = [];
             for (let i = 0; i < item.programTypes.length; i++) {
-              value.push(item.programTypes[i].programTypeNames);
+              value.push(item.programTypes[i]);
             }
             return {
-              serviceName: abc,
+              serviceName: serviceTypeName,
               programs: value,
             };
           });
@@ -28,6 +28,7 @@ class ServiceOffering extends Component {
             serviceData: res
           });
         }
+        console.log(this.state.serviceData);
       })
       .catch((error) => console.log(error));
   }

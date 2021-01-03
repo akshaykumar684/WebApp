@@ -6,6 +6,7 @@ namespace Web_Api.Dtos.ServiceTypeDto
 {
     public class GetServiceTypeDto
     {
+        public int ServiceTypeId { get; set; }
         public string ServiceTypeName { get; set; }
 
         public List<GetProgramTypeDto> ProgramTypes { get; set; }

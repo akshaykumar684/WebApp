@@ -15,7 +15,7 @@ class ServiceProgramComponent extends Component {
             <button
               type="button"
               class="list-group-item list-group-item-action" onClick = {() => this.buttonClick(item)}>
-              {item}
+              {item.programTypeNames}
             </button>
           ))}
         </div>
