@@ -12,6 +12,7 @@ class Course extends Component {
         this.setState({
           data: response.data.data,
           isLoading: false,
+          serachedKeyword: ''
         });
       })
       .catch((error) => {
@@ -25,12 +26,20 @@ class Course extends Component {
   render() {
     return (
       <div>
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Search Courses"
+          aria-label="Search"
+          name="serachedKeyword"
+          onChange = {this.handleSearch}
+        ></input>
         {this.state.loading ? (
           <p>loading</p>
         ) : (
           <div className="container my-3">
             <div className="card-deck mb-3 text-center">
-              {this.state.data.map((item) => (
+              {this.state.data.filter((item) => {return item.courseName.toLowerCase().indexOf(this.state.serachedKeyword.toLowerCase()) >=0}).map((item) => (
                 <div>
                   <div className="card mb-3 shadow-sm">
                     <div className="card-header">
@@ -40,7 +49,11 @@ class Course extends Component {
                       </h4>
                     </div>
                     <div className="card-body">
-                      <button type="button" class="btn btn-primary" onClick = {() => this.courseOnClick(item.courseId)}>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        onClick={() => this.courseOnClick(item.courseId)}
+                      >
                         Book Now
                       </button>
                     </div>
@@ -56,6 +69,12 @@ class Course extends Component {
 
   courseOnClick = (courseId) => {
       console.log(courseId);
+  }
+
+  handleSearch = (event) => {
+      this.setState({
+        [event.target.name]: event.target.value
+      })
   }
 }
  

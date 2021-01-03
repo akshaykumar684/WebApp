@@ -39,9 +39,7 @@ class ServiceProgramComponent extends Component {
         console.log(error);
       });
 
-      history.push("/grid",this.state.data);
-
-     // history.push({ pathname:"/grid", state: this.state.data});
+      history.push("/course",this.state.data);
   }
 }
 
