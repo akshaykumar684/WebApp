@@ -15,7 +15,7 @@ import axios from "../axios/axios";
 import history from "../../history"
 import Grid from '../GridComponent/Grid'
 import ServiceOffering from '../ServiceOfferingComponent/ServiceOffering'
-
+import Course from '../Course/Course'
 
 class Root extends Component {
   state = {
@@ -79,6 +79,9 @@ class Root extends Component {
           </Route>
           <Route exact path="/service">
             <ServiceOffering />
+          </Route>
+          <Route exact path="/course">
+            <Course />
           </Route>
           <SignUpModal
             showSignUpModal={this.state.showSignUpModal}

@@ -58,6 +58,11 @@ class NavBar extends Component {
                 Service<span className="sr-only"></span>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="course">
+                Course<span className="sr-only"></span>
+              </Link>
+            </li>
           </ul>
           <form
             className="form-inline my-2 my-lg-0 mx-1"
