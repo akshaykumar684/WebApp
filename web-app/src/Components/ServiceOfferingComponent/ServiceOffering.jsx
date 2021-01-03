@@ -28,7 +28,6 @@ class ServiceOffering extends Component {
             serviceData: res
           });
         }
-        console.log(this.state.serviceData);
       })
       .catch((error) => console.log(error));
   }

@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import axios from "../axios/axios";
+import history from "../../history"
 
 class ServiceProgramComponent extends Component {
+  state = {
+    data: []
+  };
   render() {
     return (
       <div className="container-fluid col-sm-3">
@@ -23,8 +28,20 @@ class ServiceProgramComponent extends Component {
     );
   }
 
-  buttonClick = (item) => {
-      console.log(item)
+  buttonClick = async (item) => {
+      await axios.get("Course/" + item.programTypeId)
+      .then((response) => {
+        this.setState({
+          data : response.data.data
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      history.push("/grid",this.state.data);
+
+     // history.push({ pathname:"/grid", state: this.state.data});
   }
 }
 

@@ -18,6 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Web_Api.Data;
+using Web_Api.ServiceProvider.CourseService;
 using Web_Api.ServiceProvider.ServiceTypeProvider;
 
 namespace Web_Api
@@ -39,6 +40,7 @@ namespace Web_Api
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IServiceTypeService,ServiceTypeService>();
+            services.AddScoped<ICourseTypeService,CourseTypeService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

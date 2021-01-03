@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './Grid.css'
 class Grid extends Component {
-    state = {  }
+    componentDidMount() {
+      console.log(this.state);
+      console.log(this.props);
+    }
     render() { 
         return (
           // <div>
