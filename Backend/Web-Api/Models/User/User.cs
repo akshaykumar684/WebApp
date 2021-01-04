@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Web_Api.Models.Enum;
+using Web_Api.Models.UserIndustryModel;
 
 namespace Web_Api.Models
 {
@@ -28,5 +30,7 @@ namespace Web_Api.Models
         public TypeOfUsers UserType { get; set; } = TypeOfUsers.Student;
 
         public Gender Gender { get; set; } = Gender.Male;
+
+        public List<UserIndustry> UserIndustries { get; set; }
     }
 }

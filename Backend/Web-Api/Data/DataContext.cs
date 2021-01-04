@@ -4,6 +4,7 @@ using Web_Api.Models.CourseModel;
 using Web_Api.Models.IndustryModel;
 using Web_Api.Models.ProgramTypeModel;
 using Web_Api.Models.ServiceTypeModel;
+using Web_Api.Models.UserIndustryModel;
 
 namespace Web_Api.Data
 {
@@ -20,5 +21,11 @@ namespace Web_Api.Data
         public DbSet<Course> Courses { get; set; }
 
         public DbSet<Industry> Industries {get;set;}
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserIndustry>()
+                .HasKey(ui => new { ui.UserId, ui.IndustryId });
+        }
     }
 }
