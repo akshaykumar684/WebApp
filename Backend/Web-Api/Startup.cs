@@ -20,6 +20,7 @@ using Microsoft.OpenApi.Models;
 using Web_Api.Data;
 using Web_Api.ServiceProvider.CourseService;
 using Web_Api.ServiceProvider.ServiceTypeProvider;
+using Web_Api.ServiceProvider.UserService;
 
 namespace Web_Api
 {
@@ -41,6 +42,7 @@ namespace Web_Api
             services.AddScoped<IAuthRepository,AuthRepository>();
             services.AddScoped<IServiceTypeService,ServiceTypeService>();
             services.AddScoped<ICourseTypeService,CourseTypeService>();
+            services.AddScoped<IUserService,UserService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
