@@ -19,5 +19,10 @@ namespace Web_Api.Controllers
             return Ok(await _userService.GetAllUserOfMentorsType());
         }
         
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetMentorsById(int id)
+        {
+            return Ok(await _userService.GetUserOfMentorsTypeById(id));
+        }
     }
 }
