@@ -5,6 +5,7 @@ using Web_Api.Models.FunctionModel;
 using Web_Api.Models.IndustryModel;
 using Web_Api.Models.ProgramTypeModel;
 using Web_Api.Models.ServiceTypeModel;
+using Web_Api.Models.TopicModel;
 using Web_Api.Models.UserFunctionModel;
 using Web_Api.Models.UserIndustryModel;
 
@@ -25,6 +26,8 @@ namespace Web_Api.Data
         public DbSet<Industry> Industries { get; set; }
 
         public DbSet<Function> Functions { get; set; }
+
+        public DbSet<Topic> Topics { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
