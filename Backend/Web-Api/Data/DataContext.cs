@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Web_Api.Models;
 using Web_Api.Models.CourseModel;
+using Web_Api.Models.FunctionModel;
 using Web_Api.Models.IndustryModel;
 using Web_Api.Models.ProgramTypeModel;
 using Web_Api.Models.ServiceTypeModel;
@@ -20,7 +21,9 @@ namespace Web_Api.Data
 
         public DbSet<Course> Courses { get; set; }
 
-        public DbSet<Industry> Industries {get;set;}
+        public DbSet<Industry> Industries { get; set; }
+
+        public DbSet<Function> Functions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
