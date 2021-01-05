@@ -18,28 +18,34 @@ namespace Web_Api.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<ServiceType> ServiceTypes{get;set;}
+        public DbSet<ServiceType> ServiceTypes { get; set; }
 
-        public DbSet<ProgramType> ProgramTypes{get;set;}
+        public DbSet<ProgramType> ProgramTypes { get; set; }
 
         public DbSet<Course> Courses { get; set; }
 
         public DbSet<Industry> Industries { get; set; }
 
+        public DbSet<UserIndustry> UserIndustries { get; set; }
+
         public DbSet<Function> Functions { get; set; }
 
+        public DbSet<UserFunction> UserFunctions { get; set; }
+
         public DbSet<Topic> Topics { get; set; }
+
+        public DbSet<UserTopic> UserTopics { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserIndustry>()
                 .HasKey(ui => new { ui.UserId, ui.IndustryId });
 
-             modelBuilder.Entity<UserFunction>()
-                .HasKey(ui => new { ui.UserId, ui.FunctionId });
+            modelBuilder.Entity<UserFunction>()
+               .HasKey(ui => new { ui.UserId, ui.FunctionId });
 
-             modelBuilder.Entity<UserTopic>()
-                .HasKey(ui => new { ui.UserId, ui.TopicId });
+            modelBuilder.Entity<UserTopic>()
+               .HasKey(ui => new { ui.UserId, ui.TopicId });
         }
     }
 }
