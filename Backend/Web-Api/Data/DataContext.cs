@@ -8,6 +8,7 @@ using Web_Api.Models.ServiceTypeModel;
 using Web_Api.Models.TopicModel;
 using Web_Api.Models.UserFunctionModel;
 using Web_Api.Models.UserIndustryModel;
+using Web_Api.Models.UserTopicModel;
 
 namespace Web_Api.Data
 {
@@ -36,6 +37,9 @@ namespace Web_Api.Data
 
              modelBuilder.Entity<UserFunction>()
                 .HasKey(ui => new { ui.UserId, ui.FunctionId });
+
+             modelBuilder.Entity<UserTopic>()
+                .HasKey(ui => new { ui.UserId, ui.TopicId });
         }
     }
 }

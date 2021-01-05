@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Web_Api.Models.UserTopicModel;
 
 namespace Web_Api.Models.TopicModel
 {
@@ -10,5 +12,7 @@ namespace Web_Api.Models.TopicModel
         public string TopicName { get; set; }
 
         public bool IsDeleted { get; set; } = false;
+
+        public List<UserTopic> UserTopics { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Web_Api.Models.Enum;
 using Web_Api.Models.UserFunctionModel;
 using Web_Api.Models.UserIndustryModel;
+using Web_Api.Models.UserTopicModel;
 
 namespace Web_Api.Models
 {
@@ -35,5 +36,7 @@ namespace Web_Api.Models
         public List<UserIndustry> UserIndustries { get; set; }
 
         public List<UserFunction> UserFunctions { get; set; }
+
+        public List<UserTopic> UserTopics { get; set; }
     }
 }
