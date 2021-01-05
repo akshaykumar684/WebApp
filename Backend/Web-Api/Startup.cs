@@ -19,8 +19,10 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Web_Api.Data;
 using Web_Api.ServiceProvider.CourseService;
+using Web_Api.ServiceProvider.FunctionService;
 using Web_Api.ServiceProvider.IndustryService;
 using Web_Api.ServiceProvider.ServiceTypeProvider;
+using Web_Api.ServiceProvider.TopicService;
 using Web_Api.ServiceProvider.UserService;
 
 namespace Web_Api
@@ -45,6 +47,8 @@ namespace Web_Api
             services.AddScoped<ICourseTypeService,CourseTypeService>();
             services.AddScoped<IUserService,UserService>();
             services.AddScoped<IIndustryService,IndustryService>();
+            services.AddScoped<IFunctionService,FunctionService>();
+            services.AddScoped<ITopicService,TopicService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

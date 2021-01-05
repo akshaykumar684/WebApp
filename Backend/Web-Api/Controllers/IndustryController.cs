@@ -8,16 +8,16 @@ namespace Web_Api.Controllers
     [Route("[controller]")]
     public class IndustryController : ControllerBase
     {
-        private readonly IIndustryService _iindustryService;
-        public IndustryController(IIndustryService iindustryService)
+        private readonly IIndustryService _industryService;
+        public IndustryController(IIndustryService industryService)
         {
-            _iindustryService = iindustryService;
+            _industryService = industryService;
         }
 
         [HttpGet("GetAllIndutries")]
         public async Task<IActionResult> GetAllIndutries()
         {
-            return Ok(await _iindustryService.GetAllIndustries());
+            return Ok(await _industryService.GetAllIndustries());
         }
     }
 }
