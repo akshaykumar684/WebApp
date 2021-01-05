@@ -5,6 +5,7 @@ using Web_Api.Models.FunctionModel;
 using Web_Api.Models.IndustryModel;
 using Web_Api.Models.ProgramTypeModel;
 using Web_Api.Models.ServiceTypeModel;
+using Web_Api.Models.UserFunctionModel;
 using Web_Api.Models.UserIndustryModel;
 
 namespace Web_Api.Data
@@ -29,6 +30,9 @@ namespace Web_Api.Data
         {
             modelBuilder.Entity<UserIndustry>()
                 .HasKey(ui => new { ui.UserId, ui.IndustryId });
+
+             modelBuilder.Entity<UserFunction>()
+                .HasKey(ui => new { ui.UserId, ui.FunctionId });
         }
     }
 }
