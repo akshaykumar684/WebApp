@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Web_Api.Dtos.FunctionDto;
 using Web_Api.Dtos.IndustryDto;
 
 namespace Web_Api.Dtos.User
@@ -16,5 +17,7 @@ namespace Web_Api.Dtos.User
         public string Mobile { get; set; }
 
         public List<GetIndustryDto> Industries { get; set; }
+
+        public List<GetFunctionDto> Functions { get; set; }
     }
 }
