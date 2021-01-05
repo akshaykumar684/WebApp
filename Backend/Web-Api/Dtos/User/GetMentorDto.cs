@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Web_Api.Dtos.FunctionDto;
 using Web_Api.Dtos.IndustryDto;
+using Web_Api.Dtos.TopicDto;
 
 namespace Web_Api.Dtos.User
 {
@@ -19,5 +20,7 @@ namespace Web_Api.Dtos.User
         public List<GetIndustryDto> Industries { get; set; }
 
         public List<GetFunctionDto> Functions { get; set; }
+
+        public List<GetTopicDto> Topics { get; set; }
     }
 }

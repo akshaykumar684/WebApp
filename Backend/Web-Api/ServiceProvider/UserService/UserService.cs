@@ -24,6 +24,7 @@ namespace Web_Api.ServiceProvider.UserService
         {
             var user = await _dataContext.Users.Include(ui => ui.UserIndustries).ThenInclude(i => i.Industry)
                               .Include(uf => uf.UserFunctions).ThenInclude(f => f.Function)
+                              .Include(ut => ut.UserTopics).ThenInclude(t => t.Topic)
                               .Where(u => u.isDeleted == false && u.UserType == TypeOfUsers.Mentor).ToListAsync();
 
             var response = new ServiceResponse<List<GetMentorDto>>();
@@ -37,6 +38,7 @@ namespace Web_Api.ServiceProvider.UserService
         {
             var user = await _dataContext.Users.Include(ui => ui.UserIndustries).ThenInclude(i => i.Industry)
                               .Include(uf => uf.UserFunctions).ThenInclude(f => f.Function)
+                              .Include(ut => ut.UserTopics).ThenInclude(t => t.Topic)
                               .FirstOrDefaultAsync(u => u.UserId == Id);
             var response = new ServiceResponse<GetMentorDto>();
             response.Data = _mapper.Map<GetMentorDto>(user);
