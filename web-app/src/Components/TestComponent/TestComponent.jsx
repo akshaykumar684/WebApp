@@ -11,20 +11,28 @@ class Test extends Component {
     functions: [],
     topics: [],
     mentors: [],
-    selectedIndustry: "",
-    selectedFunction: "",
-    selectedTopic: "",
+    selectedIndustry: "selectIndustry",
+    selectedFunction: "selectFunction",
+    selectedTopic: "selectTopic",
   };
 
   async componentDidMount() {
-   this.getAllIndustries();
-   this.getAllFunctions();
-   this.getAllTopics();
-   this.getAllMentors();
+    this.getAllIndustries();
+    this.getAllFunctions();
+    this.getAllTopics();
+    this.getAllMentors();
   }
 
   render() {
-    const {industries,functions,topics,mentors} = this.state
+    const {
+      industries,
+      functions,
+      topics,
+      mentors,
+      selectedIndustry,
+      selectedFunction,
+      selectedTopic
+    } = this.state;
     return (
       <div>
         <div style={{ display: "flex", justifyContent: "space-around" }}>
@@ -50,27 +58,37 @@ class Test extends Component {
           ) : (
             <div className="container my-3">
               <div className="card-deck mb-3 text-center">
-                {mentors.map((mentor) => (
-                  <div>
-                    <div className="card mb-3 shadow-sm">
-                      <div className="card-header">
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        <h4 className="my-0 font-weight-normal">
-                          {mentor.name}
-                        </h4>
-                      </div>
-                      <div className="card-body">
-                        <button
-                          type="button"
-                          class="btn btn-primary"
-                          onClick={() => this.mentorsSelectedForBooking(mentor)}
-                        >
-                          Book Now
-                        </button>
+                {mentors
+                  .filter((mentor) =>
+                    mentor.industriesList.includes(selectedIndustry)
+                  )
+                  .filter((mentor) =>
+                    mentor.functionList.includes(selectedFunction)
+                  )
+                  .filter((mentor) => mentor.topicList.includes(selectedTopic))
+                  .map((mentor) => (
+                    <div>
+                      <div className="card mb-3 shadow-sm">
+                        <div className="card-header">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          <h4 className="my-0 font-weight-normal">
+                            {mentor.name}
+                          </h4>
+                        </div>
+                        <div className="card-body">
+                          <button
+                            type="button"
+                            class="btn btn-primary"
+                            onClick={() =>
+                              this.mentorsSelectedForBooking(mentor)
+                            }
+                          >
+                            Book Now
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           )}
@@ -86,11 +104,11 @@ class Test extends Component {
       });
     } else if (defaultValue === "Select Function") {
       this.setState({
-        selectedIndustry: event.value,
+        selectedFunction: event.value,
       });
     } else if (defaultValue === "Select Topics") {
       this.setState({
-        selectedIndustry: event.value,
+        selectedTopic: event.value,
       });
     }
   };
@@ -116,7 +134,7 @@ class Test extends Component {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   getAllFunctions = async () => {
     await axios
@@ -135,43 +153,68 @@ class Test extends Component {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   getAllTopics = async () => {
     await axios
-    .get("Topic/GetAllTopics")
-    .then((response) => {
-      if (response.data.isSuccess) {
-        let topicList = [];
-        for (let i = 0; i < response.data.data.length; i++) {
-          topicList.push(response.data.data[i].topicName);
+      .get("Topic/GetAllTopics")
+      .then((response) => {
+        if (response.data.isSuccess) {
+          let topicList = [];
+          for (let i = 0; i < response.data.data.length; i++) {
+            topicList.push(response.data.data[i].topicName);
+          }
+          this.setState({
+            topics: topicList,
+          });
         }
-        this.setState({
-          topics: topicList,
-        });
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   getAllMentors = async () => {
     await axios
-    .get("User/GetAllMentors")
-    .then((response) => {
-      if (response.data.isSuccess) {
-        console.log(response.data.data);
-        this.setState({
-          mentors: response.data.data,
-          loading: false,
-        });
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
+      .get("User/GetAllMentors")
+      .then((response) => {
+        if (response.data.isSuccess) {
+          for (let i = 0; i < response.data.data.length; i++) {
+            let industries = response.data.data[i].industries;
+            let industriesList = [];
+            for (let j = 0; j < industries.length; j++) {
+              industriesList.push(industries[j].industryName);
+            }
+            industriesList.push("selectIndustry");
+
+            let functions = response.data.data[i].functions;
+            let functionList = [];
+            for (let j = 0; j < functions.length; j++) {
+              functionList.push(functions[j].functionName);
+            }
+            functionList.push("selectFunction");
+
+            let topics = response.data.data[i].topics;
+            let topicList = [];
+            for (let j = 0; j < topics.length; j++) {
+              topicList.push(topics[j].topicName);
+            }
+            topicList.push("selectTopic");
+
+            response.data.data[i].industriesList = industriesList;
+            response.data.data[i].functionList = functionList;
+            response.data.data[i].topicList = topicList;
+          }
+          this.setState({
+            mentors: response.data.data,
+            loading: false,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 }
 
 export default Test;
