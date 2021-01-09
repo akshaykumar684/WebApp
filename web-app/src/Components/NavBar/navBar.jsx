@@ -37,7 +37,6 @@ class NavBar extends Component {
                 About <span className="sr-only"></span>
               </Link>
             </li>
-
             <li className="nav-item">
               <Link className="nav-link" to="contact">
                 Contact Us <span className="sr-only"></span>
@@ -56,11 +55,6 @@ class NavBar extends Component {
             <li className="nav-item">
               <Link className="nav-link" to="service">
                 Service<span className="sr-only"></span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="course">
-                Course<span className="sr-only"></span>
               </Link>
             </li>
           </ul>
